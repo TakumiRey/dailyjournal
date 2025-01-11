@@ -67,6 +67,10 @@ if (!isset($_SESSION['username'])) {
             <li class="nav-item">
                 <a class="nav-link" href="admin.php?page=article">Article</a>
             </li> 
+            <li class="nav-item">
+                <a class="nav-link" href="admin.php?page=profil">Profil</a>
+            </li> 
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-danger fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?= $_SESSION['username']?>
@@ -80,25 +84,25 @@ if (!isset($_SESSION['username'])) {
     </div>
     </nav>
     <!-- nav end -->
-    <!-- content begin -->
-    <section id="content" class="p-5">
-        <div class="container">
+<!-- content begin -->
+<section id="content" class="p-5">
+    <div class="container">
+        <?php
+        if(isset($_GET['page'])){
+        ?>
+            <h4 class="lead display-6 pb-2 border-bottom border-danger-subtle"><?= ucfirst($_GET['page'])?></h4>
             <?php
-            if(isset($_GET['page'])){
-            ?>
-                <h4 class="lead display-6 pb-2 border-bottom border-danger-subtle"><?= ucfirst($_GET['page'])?></h4>
-                <?php
-                include($_GET['page'].".php");
-            }else{
-            ?>
-                <h4 class="lead display-6 pb-2 border-bottom border-danger-subtle">Dashboard</h4>
-                <?php
-               include("dashboard.php");
-            }
-            ?>
-        </div>
-    </section>
-    <!-- content end -->
+            include($_GET['page'].".php");
+        }else{
+        ?>
+            <h4 class="lead display-6 pb-2 border-bottom border-danger-subtle">Dashboard</h4>
+            <?php
+            include("dashboard.php");
+        }
+        ?>
+    </div>
+</section>
+<!-- content end -->    
     <!-- footer begin -->
     <footer class="text-center p-5 bg-danger-subtle">
     <div>
